@@ -125,7 +125,7 @@ public class SaveManager : MonoBehaviour
         AesManaged aes = new AesManaged();
         ICryptoTransform decryptor = aes.CreateDecryptor(_key, _initVector);
 
-        MemoryStream memoryStream = new MemoryStream(); // 메모리 잡고
+        MemoryStream memoryStream = new MemoryStream(msg); // 메모리 잡고
         CryptoStream cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read); // Cryptostream 으로 아마 디코딩 시키고
         StreamReader streamReader = new StreamReader(cryptoStream); // sw 에 저장?
 
