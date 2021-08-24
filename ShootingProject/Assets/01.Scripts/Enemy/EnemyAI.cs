@@ -116,4 +116,9 @@ public class EnemyAI : MonoBehaviour
             }
         }
     }
+
+    public void SetDead()
+    {
+        state = EnemyState.DIE;
+    }
 }

@@ -63,3 +63,9 @@ crashlytics-build.properties
 /SaveAndLoad2/obj/Debug
 /SaveAndLoad2/Temp
 /SaveAndLoad2/UserSettings
+
+/ShootingProject/Library
+/ShootingProject/Logs
+/ShootingProject/obj/Debug
+/ShootingProject/Temp
+/ShootingProject/UserSettings

@@ -2665,6 +2665,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1179559395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179559392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca13f732df9326428a9987cb7164d53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initHealth: 100
+  bloodEffectTime: 0.5
 --- !u!114 &1179559396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2941,6 +2955,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1278325783}
   - component: {fileID: 1278325784}
+  - component: {fileID: 1278325785}
   m_Layer: 0
   m_Name: ManagerObject
   m_TagString: Untagged
@@ -2975,6 +2990,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTR: {fileID: 512878843}
+--- !u!114 &1278325785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278325782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c49161ae73f11f648bc20e049ac2549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloodEffectPrefab: {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc, type: 3}
 --- !u!1001 &1349953802
 PrefabInstance:
   m_ObjectHideFlags: 0
