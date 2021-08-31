@@ -26,8 +26,10 @@ public class EnemyAI : MonoBehaviour
     private MoveAgent moveAgent;
 
     private Animator anim;
-    private readonly int hashMove = Animator.StringToHash("isMove");
-    private readonly int hashSpeed = Animator.StringToHash("speed");
+    private readonly int hashMove     = Animator.StringToHash("isMove");
+    private readonly int hashSpeed    = Animator.StringToHash("speed");
+    private readonly int hashDie      = Animator.StringToHash("die");
+    private readonly int hashDieIndex = Animator.StringToHash("dieIndex");
 
     private EnemyFOV fov;
     private EnemyShooter shooter;
@@ -48,6 +50,8 @@ public class EnemyAI : MonoBehaviour
 
     void OnEnable()
     {
+        isDie = false;
+        state = EnemyState.PATROL;
         StartCoroutine(CheckState());
         StartCoroutine(DoAction());
     }
@@ -56,6 +60,7 @@ public class EnemyAI : MonoBehaviour
     {
         anim.SetFloat(hashSpeed, moveAgent.speed);
     }
+
 
     IEnumerator CheckState()
     {
@@ -112,13 +117,27 @@ public class EnemyAI : MonoBehaviour
                 case EnemyState.DIE:
                     moveAgent.Stop();
                     shooter.isFire = false;
+                    isDie = true;
+                    
+                    anim.SetInteger(hashDieIndex, Random.Range(0, 3));
+                    anim.SetTrigger(hashDie);
+
                     break;
             }
         }
     }
+    
 
     public void SetDead()
     {
         state = EnemyState.DIE;
+        StartCoroutine(DeadProcess());
+    }
+
+    IEnumerator DeadProcess()
+    {
+        yield return new WaitForSeconds(5.0f);
+        gameObject.SetActive(false);
     }
 }
+

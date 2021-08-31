@@ -26,6 +26,8 @@ public class EnemyHealth : LivingEntity, IDamageable
     public override void OnDamage(float damage, Vector3 hitPosition, Vector3 hitNormal)
     {
         base.OnDamage(damage, hitPosition, hitNormal);
+        if (dead) return;
+        
         StartCoroutine(ShowBloodEffect(hitPosition, hitNormal));
     }
 
@@ -34,4 +36,5 @@ public class EnemyHealth : LivingEntity, IDamageable
         base.Die();
         ai.SetDead();
     }
+
 }

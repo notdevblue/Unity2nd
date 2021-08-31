@@ -67,8 +67,10 @@ public class MoveAgent : MonoBehaviour
 
     void Start()
     {
+        wayPointGroup = GameObject.Find("WaypointGroup").transform;
+
         wayPointGroup.GetComponentsInChildren<Transform>(wayPoints);
-        wayPoints.RemoveAt(0);
+        wayPoints.RemoveAt(0); // 0은 부모 좌표
         MoveWayPoint(); //다음 웨이포인트로 이동한다.
     }
 
