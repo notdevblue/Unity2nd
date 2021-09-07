@@ -30,11 +30,17 @@ public class Gun : MonoBehaviour
     [Header("Audio clips")]
     public AudioClip reloadSound;        
     public AudioClip fireSound;
+    public AudioClip fastReloadSound;
 
     private AudioSource audioSource;
 
+    // bullet event
     public event Action<int> UpdateBullet;
     public event Action<int> UpdateMaxBullet;
+    
+    // reload event
+    public event Action<float> ReloadEvent;
+    private float currentReloadTime = 0;
 
     void Awake()
     {
@@ -47,8 +53,9 @@ public class Gun : MonoBehaviour
         state = State.Ready;
         lastFireTime = 0;
 
-        UpdateBullet += x => {};
+        UpdateBullet    += x => {};
         UpdateMaxBullet += x => {};
+        ReloadEvent     += x => {};
 
         UpdateBullet(magAmmo);
         UpdateMaxBullet(magCapacity);
@@ -107,6 +114,13 @@ public class Gun : MonoBehaviour
         bulletLineRenderer.gameObject.SetActive(false);
     }
 
+    public void FastReload()
+    {
+        audioSource.clip = fastReloadSound; // reload sound
+        audioSource.Play();
+        currentReloadTime = reloadTime;
+    }
+
     public bool Reload()
     {
         if(state == State.Reloding || magAmmo >= magCapacity)
@@ -117,16 +131,26 @@ public class Gun : MonoBehaviour
         return true;
     }
 
-    public IEnumerator ReloadRoutine ()
+    public IEnumerator ReloadRoutine()
     {
         state = State.Reloding;
         audioSource.clip = reloadSound;
         audioSource.Play();
+
+        currentReloadTime = 0;
+        while(currentReloadTime <= reloadTime)
+        {
+            yield return null;
+            ReloadEvent(currentReloadTime / reloadTime); // current reload precentage
+            currentReloadTime += Time.deltaTime;
+        }
         
-        yield return new WaitForSeconds(reloadTime);
+        ReloadEvent(0); // set statusbar to 0
+
         magAmmo = magCapacity;
         state = State.Ready;
         UpdateBullet(magAmmo);
+        UIManager.instance.reloadSuccess = true;
     }
 }
 

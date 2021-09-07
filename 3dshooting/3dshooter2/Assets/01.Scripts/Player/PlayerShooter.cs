@@ -22,7 +22,11 @@ public class PlayerShooter : MonoBehaviour
         {
             if (gun.Reload())
             {
-                //여기서 애니메이션 재생
+                UIManager.instance.StartReload();
+            }
+            else if (gun.state == State.Reloding && UIManager.instance.CheckFastReload())
+            {
+                gun.FastReload();
             }
         }
     }
