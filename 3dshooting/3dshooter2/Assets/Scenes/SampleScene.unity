@@ -4806,17 +4806,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8ea464d476e8bf4e2a7c34ebe77e58f9, type: 3}
   - {fileID: 21300000, guid: c6febe0e0adcb58de997388776fdd88c, type: 3}
   playerGun: {fileID: 312207575}
-  bulletMarkList:
-  - {fileID: 1562137984}
-  - {fileID: 888949124}
-  - {fileID: 1649749423}
-  - {fileID: 1009481025}
-  - {fileID: 742490510}
-  - {fileID: 104416450}
-  - {fileID: 495271299}
-  - {fileID: 88452949}
-  - {fileID: 240575419}
-  - {fileID: 462466527}
+  bulletMarkList: []
 --- !u!4 &1970540189 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400012, guid: f3cd25b3bf53c4adaaf087d862e435e6, type: 3}
