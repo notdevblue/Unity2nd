@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    
     static public UIManager instance;
     public Text remainBullet;
     public RectTransform bulletMarkPannel;

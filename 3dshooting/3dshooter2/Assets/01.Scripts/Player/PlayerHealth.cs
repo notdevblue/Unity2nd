@@ -38,4 +38,23 @@ public class PlayerHealth : LivingEntity
     {
         base.Die();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(!death)
+        {
+            IUseable item = other.GetComponent<IUseable>();
+
+            if(item != null)
+            {
+                item.Use(gameObject);
+            }
+        }
+    }
+
+    public override void RestoreHealth(float value)
+    {
+        base.RestoreHealth(value);
+        hpBar.SetFill(health, initHealth);
+    }
 }

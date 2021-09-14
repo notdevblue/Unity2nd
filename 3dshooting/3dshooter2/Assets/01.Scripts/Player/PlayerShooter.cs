@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerShooter : MonoBehaviour
 {
+    
     public Gun gun;
     private PlayerInput playerInput;
 

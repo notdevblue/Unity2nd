@@ -12,6 +12,7 @@ public enum State
 
 public class Gun : MonoBehaviour
 {
+
     public State state { get; private set; }
     public Transform firePosition;
     public ParticleSystem muzzleFlash; //�ѱ�ȭ�� ����Ʈ
@@ -151,6 +152,16 @@ public class Gun : MonoBehaviour
         state = State.Ready;
         UpdateBullet(magAmmo);
         UIManager.instance.reloadSuccess = true;
+    }
+
+
+    public void AddMaxAmmo(int value)
+    {
+        magCapacity = Mathf.Clamp(magCapacity + value, 0, 100); // 100발은 초과하지 않게
+
+        magAmmo = magCapacity;
+        UpdateMaxBullet(magCapacity);
+        UpdateBullet(magAmmo);
     }
 }
 
